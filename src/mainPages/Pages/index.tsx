@@ -1,10 +1,23 @@
-import React, { FC } from 'react';
-import * as SC from './styles';
+import React, { FC, useState } from "react";
+import * as SC from "./styles";
+import Table from "../../components/Table";
+import pagesData from "../../data/mocks/pages.json";
 
 const Pages: FC = () => {
-    return (
-        <SC.StyledPagesMainContainer>Pages</SC.StyledPagesMainContainer>
-    )
-}
+  const [tableData, setTableData] = useState<any[]>(pagesData);
+  const [selectedItem, setSelectedItem] = useState<any>();
 
-export default Pages
+  return (
+    <SC.StyledPagesMainContainer>
+      {/* TODO */}
+      {/* <SC.StyledTableControllersBlock>
+        <input type="text" />
+        <input type="text" />
+      </SC.StyledTableControllersBlock> */}
+      <Table data={tableData} setSelectedItem={setSelectedItem} />
+      {selectedItem && <div>{selectedItem.id}</div>}
+    </SC.StyledPagesMainContainer>
+  );
+};
+
+export default Pages;
