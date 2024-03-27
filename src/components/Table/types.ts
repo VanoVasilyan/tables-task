@@ -1,5 +1,10 @@
 import { SetStateAction } from "react";
 export interface ITableProps {
   data: any[];
-  setSelectedItem: React.Dispatch<SetStateAction<any>>;
+  setEditItem: React.Dispatch<SetStateAction<any>>;
+}
+
+export enum EElementStatus {
+  ACTIVE = "Active",
+  INACTIVE = "Inactive",
 }

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import * as SC from "./styles";
-import { ITableProps } from "./types";
+import { EElementStatus, ITableProps } from "./types";
 import { dateFormatter } from "../../utils/dateformatter";
 import Button from "../Button";
 
-const Table: FC<ITableProps> = ({ data, setSelectedItem }) => {
+const Table: FC<ITableProps> = ({ data, setEditItem }) => {
   return (
     <SC.StyledTableMainContainer>
       <SC.StyledTableBlock>
@@ -37,7 +37,9 @@ const Table: FC<ITableProps> = ({ data, setSelectedItem }) => {
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
                   >
-                    {element.active ? "Active" : "Inactive"}
+                    {element.active
+                      ? EElementStatus.ACTIVE
+                      : EElementStatus.INACTIVE}
                   </SC.StyledTableColumns>
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
@@ -51,10 +53,7 @@ const Table: FC<ITableProps> = ({ data, setSelectedItem }) => {
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
                   >
-                    <Button
-                      text="Edit"
-                      onClick={() => setSelectedItem(element)}
-                    />
+                    <Button text="Edit" onClick={() => setEditItem(element)} />
                   </SC.StyledTableColumns>
                 </SC.StyledTableRows>
               );
