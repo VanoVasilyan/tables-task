@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 
 export const StyledPricePlansMainContainer = styled.div`
   width: 100%;
@@ -10,8 +11,15 @@ export const StyledPricePlansMainContainer = styled.div`
 export const StyledTableControllersBlock = styled.div`
   display: flex;
   justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   gap: 15px;
   margin: 15px 0;
+`;
+
+export const StyledTableControllersInputsBlock = styled.div`
+  display: flex;
+  gap: 15px;
 `;
 
 export const StyledSearchInput = styled.input<{ $bgImage?: string }>`
@@ -43,3 +51,21 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledSelectOptions = styled.option``;
+
+export const StyledPathsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const StyledPagesLink = styled(Link)<{ $isActive?: boolean }>`
+  text-decoration: none;
+  &:focus {
+    color: inherit;
+  }
+  ${({ $isActive }) =>
+    $isActive &&
+    css`
+      color: #12179a;
+      font-weight: 700;
+    `};
+`;

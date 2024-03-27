@@ -1,9 +1,12 @@
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { EPageTypesForTable, ESelectOptions, IPricePlansProps } from "../types/globalTypes";
+import { pagesLinks } from "./../data/index";
 import pricePlansData from "../data/mocks/pricePlans.json";
 import { selectValues } from "../data";
-import { EPageTypesForTable, ESelectOptions, IPricePlansProps } from "../types/globalTypes";
 
 export const usePricePlans = () => {
+  const { pathname } = useLocation();
   const [tableData, setTableData] = useState<IPricePlansProps[]>(pricePlansData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>("");
@@ -57,6 +60,8 @@ export const usePricePlans = () => {
     inputValue,
     editItem,
     selectValues,
+    pagesLinks,
+    pathname,
     handleSearchItems,
     handleSelectItems,
     setEditItem,

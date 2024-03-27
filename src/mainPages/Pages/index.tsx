@@ -3,7 +3,6 @@ import searchIcon from "../../assets/search.png";
 import Table from "../../components/Table";
 import { usePages } from "../../hooks/usePages";
 import * as SC from "./styles";
-import { Link } from "react-router-dom";
 
 const Pages: FC = () => {
   const {
@@ -12,6 +11,8 @@ const Pages: FC = () => {
     editItem,
     selectValues,
     pageType,
+    pagesLinks,
+    pathname,
     handleSearchItems,
     handleSelectItems,
     setEditItem,
@@ -20,25 +21,35 @@ const Pages: FC = () => {
   return (
     <SC.StyledPagesMainContainer>
       <SC.StyledTableControllersBlock>
-        <SC.StyledSearchInput
-          value={inputValue}
-          $bgImage={searchIcon}
-          placeholder="Search"
-          type="text"
-          onChange={handleSearchItems}
-        />
-        <SC.StyledSelect onChange={handleSelectItems}>
-          {selectValues.map((item) => (
-            <SC.StyledSelectOptions key={item.id}>
-              {item.value}
-            </SC.StyledSelectOptions>
+        <SC.StyledPathsContainer>
+          {pagesLinks.map((link) => (
+            <SC.StyledPagesLink
+              $isActive={link.to === pathname}
+              to={link.to}
+              key={link.id}
+            >
+              {link.title}
+            </SC.StyledPagesLink>
           ))}
-        </SC.StyledSelect>
+        </SC.StyledPathsContainer>
+        <SC.StyledTableControllersInputsBlock>
+          <SC.StyledSearchInput
+            value={inputValue}
+            $bgImage={searchIcon}
+            placeholder="Search"
+            type="text"
+            onChange={handleSearchItems}
+          />
+          <SC.StyledSelect onChange={handleSelectItems}>
+            {selectValues.map((item) => (
+              <SC.StyledSelectOptions key={item.id}>
+                {item.value}
+              </SC.StyledSelectOptions>
+            ))}
+          </SC.StyledSelect>
+        </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
       {/* TODO */}
-      <Link to={"/products"}>Products</Link>
-      <Link to={"/pages"}>Pages</Link>
-      <Link to={"/pricePlans"}>Price Plans</Link>
       <Table pageType={pageType} data={tableData} setEditItem={setEditItem} />
       {editItem && <div>{editItem.id}</div>}
     </SC.StyledPagesMainContainer>

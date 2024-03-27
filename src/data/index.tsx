@@ -1,8 +1,8 @@
+import { Navigate } from "react-router-dom";
 import Products from "../mainPages/Products";
 import Pages from "../mainPages/Pages";
 import PricePlans from "../mainPages/PricePlans";
 import { IRoutes } from "./types";
-import { Navigate } from "react-router-dom";
 
 export const routes: IRoutes[] = [
   {
@@ -43,5 +43,23 @@ export const selectValues = [
   {
     id: 3,
     value: "Inactive",
+  },
+];
+
+export const pagesLinks = [
+  {
+    id: 1,
+    title: "Products",
+    to: "/",
+  },
+  {
+    id: 2,
+    title: "Pages",
+    to: "/pages",
+  },
+  {
+    id: 3,
+    title: "Price Plans",
+    to: "/pricePlans",
   },
 ];

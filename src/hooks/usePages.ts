@@ -1,10 +1,13 @@
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { EPageTypesForTable, IPagesProps } from "../types/globalTypes";
 import { ESelectOptions } from "../types/globalTypes";
 import { selectValues } from "../data";
+import { pagesLinks } from "./../data/index";
 import pagesData from "../data/mocks/pages.json";
 
 export const usePages = () => {
+  const { pathname } = useLocation();
   const [tableData, setTableData] = useState<IPagesProps[]>(pagesData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>("");
@@ -58,6 +61,8 @@ export const usePages = () => {
     inputValue,
     editItem,
     selectValues,
+    pagesLinks,
+    pathname,
     handleSearchItems,
     handleSelectItems,
     setEditItem,
