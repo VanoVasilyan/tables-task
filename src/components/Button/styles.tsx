@@ -6,6 +6,8 @@ export const StyledButtonWrapper = styled.div`
 
 export const StyledMainButton = styled.button`
   width: 100%;
+  max-width: 86px;
+  min-height: 25px;
   cursor: pointer;
   border: none;
   outline: none;
