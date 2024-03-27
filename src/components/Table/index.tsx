@@ -4,7 +4,7 @@ import { EElementStatus, ITableProps } from "./types";
 import { dateFormatter } from "../../utils/dateformatter";
 import Button from "../Button";
 
-const Table: FC<ITableProps> = ({ data, setEditItem }) => {
+const Table: FC<ITableProps> = ({ data, setEditItem, pageType }) => {
   return (
     <SC.StyledTableMainContainer>
       <SC.StyledTableBlock>
@@ -12,7 +12,7 @@ const Table: FC<ITableProps> = ({ data, setEditItem }) => {
           <SC.StyledMainTableHead>
             <SC.StyledTableRows>
               <SC.StyledTableColumns $bgColor={"#F5F8FC"}>
-                Name
+                {pageType}
               </SC.StyledTableColumns>
               <SC.StyledTableColumns $bgColor={"#F5F8FC"}>
                 Status
@@ -32,10 +32,11 @@ const Table: FC<ITableProps> = ({ data, setEditItem }) => {
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
                   >
-                    {element.title}
+                    {element.title || element.name || element.description}
                   </SC.StyledTableColumns>
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
+                    $isActive={element.active}
                   >
                     {element.active
                       ? EElementStatus.ACTIVE

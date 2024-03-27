@@ -21,7 +21,15 @@ export const StyledMainTableHeadRightBlock = styled.div`
   gap: 100px;
 `;
 
-export const StyledTableColumns = styled.td<{ $bgColor?: string }>`
+export const StyledTableColumns = styled.td<{
+  $bgColor?: string;
+  $isActive?: boolean | undefined;
+}>`
+  color: ${({ $isActive }) => {
+    if ($isActive !== undefined) {
+      return $isActive ? "#94eb41" : "#ff1818";
+    }
+  }};
   background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : "white")};
   padding: 10px 22px;
 `;

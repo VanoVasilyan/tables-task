@@ -1,30 +1,29 @@
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
-import { EPageTypesForTable, IPagesProps } from "../types/globalTypes";
-import { ESelectOptions } from "../types/globalTypes";
+import productsData from "../data/mocks/products.json";
 import { selectValues } from "../data";
-import pagesData from "../data/mocks/pages.json";
+import { EPageTypesForTable, ESelectOptions, IProductsProps } from "../types/globalTypes";
 
-export const usePages = () => {
-  const [tableData, setTableData] = useState<IPagesProps[]>(pagesData);
+export const useProducts = () => {
+  const [tableData, setTableData] = useState<IProductsProps[]>(productsData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>("");
   const [editItem, setEditItem] = useState<any>();
 
   const filteredData = useMemo(() => {
     return selectedItem === ESelectOptions.ALL
-      ? pagesData
+      ? productsData
       : selectedItem === ESelectOptions.ACTIVE
-      ? pagesData.filter((item) => item.active && item)
+      ? productsData.filter((item) => item.active && item)
       : selectedItem === ESelectOptions.INACTIVE
-      ? pagesData.filter((item) => !item.active && item)
-      : pagesData;
+      ? productsData.filter((item) => !item.active && item)
+      : productsData;
   }, [selectedItem]);
 
   const handleSearchItems = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);
       const searchResults = filteredData.filter((item) =>
-        item.title.toLowerCase().includes(e.target.value.toLowerCase())
+        item.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
       if (searchResults.length) {
         setTableData(searchResults);
@@ -39,7 +38,7 @@ export const usePages = () => {
       if (inputValue) {
         setInputValue("");
       }
-      const selectedItems = pagesData.filter((item) =>
+      const selectedItems = productsData.filter((item) =>
         (e.target.value === ESelectOptions.ACTIVE && item.active) ||
         (e.target.value === ESelectOptions.INACTIVE && !item.active) ||
         e.target.value === ESelectOptions.ALL
@@ -61,6 +60,6 @@ export const usePages = () => {
     handleSearchItems,
     handleSelectItems,
     setEditItem,
-    pageType: EPageTypesForTable.PAGES,
+    pageType: EPageTypesForTable.PRODUCTS
   };
 };

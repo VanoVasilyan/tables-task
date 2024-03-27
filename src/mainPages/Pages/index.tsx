@@ -1,15 +1,17 @@
 import React, { FC } from "react";
-import * as SC from "./styles";
 import searchIcon from "../../assets/search.png";
 import Table from "../../components/Table";
-import { selectValues } from "../../data";
 import { usePages } from "../../hooks/usePages";
+import * as SC from "./styles";
+import { Link } from "react-router-dom";
 
 const Pages: FC = () => {
   const {
     tableData,
     inputValue,
     editItem,
+    selectValues,
+    pageType,
     handleSearchItems,
     handleSelectItems,
     setEditItem,
@@ -27,11 +29,17 @@ const Pages: FC = () => {
         />
         <SC.StyledSelect onChange={handleSelectItems}>
           {selectValues.map((item) => (
-            <SC.StyledSelectOptions key={item.id}>{item.value}</SC.StyledSelectOptions>
+            <SC.StyledSelectOptions key={item.id}>
+              {item.value}
+            </SC.StyledSelectOptions>
           ))}
         </SC.StyledSelect>
       </SC.StyledTableControllersBlock>
-      <Table data={tableData} setEditItem={setEditItem} />
+      {/* TODO */}
+      <Link to={"/products"}>Products</Link>
+      <Link to={"/pages"}>Pages</Link>
+      <Link to={"/pricePlans"}>Price Plans</Link>
+      <Table pageType={pageType} data={tableData} setEditItem={setEditItem} />
       {editItem && <div>{editItem.id}</div>}
     </SC.StyledPagesMainContainer>
   );

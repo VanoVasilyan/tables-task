@@ -26,3 +26,15 @@ export interface IProductsProps {
   active: boolean;
   createdAt: string;
 }
+
+export enum ESelectOptions {
+  ALL = "All",
+  ACTIVE = "Active",
+  INACTIVE = "Inactive",
+}
+
+export enum EPageTypesForTable {
+  PAGES = "Title",
+  PRICE_PLANS = "Description",
+  PRODUCTS = "Name",
+}
