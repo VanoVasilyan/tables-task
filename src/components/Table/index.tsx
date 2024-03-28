@@ -4,7 +4,7 @@ import { EElementStatus, ITableProps } from "./types";
 import { dateFormatter } from "../../utils/dateformatter";
 import Button from "../Button";
 
-const Table: FC<ITableProps> = ({ data, setEditItem, pageType , openModal}) => {
+const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
   return (
     <SC.StyledTableMainContainer>
       <SC.StyledTableBlock>
@@ -26,7 +26,7 @@ const Table: FC<ITableProps> = ({ data, setEditItem, pageType , openModal}) => {
             </SC.StyledTableRows>
           </SC.StyledMainTableHead>
           <SC.StyledMainTableBody>
-            {data.map((element: any, index: number) => {
+            {filterdData?.map((element: any, index: number) => {
               return (
                 <SC.StyledTableRows key={element.id}>
                   <SC.StyledTableColumns
@@ -54,7 +54,10 @@ const Table: FC<ITableProps> = ({ data, setEditItem, pageType , openModal}) => {
                   <SC.StyledTableColumns
                     $bgColor={index % 2 ? "#F5F8FC" : "white"}
                   >
-                    <Button text="Edit" onClick={() => openModal(element, data)} />
+                    <Button
+                      text="Edit"
+                      onClick={() => openModal(element, data)}
+                    />
                   </SC.StyledTableColumns>
                 </SC.StyledTableRows>
               );

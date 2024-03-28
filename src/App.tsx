@@ -1,9 +1,30 @@
-import React from "react";
-import "./App.css";
+import React, { useEffect } from "react";
+import pagesData from "./data/mocks/pages.json";
+import pricePlansData from "./data/mocks/pricePlans.json";
+import productsData from "./data/mocks/products.json";
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./data";
+import { EPageTypes } from "./types/globalTypes";
+import "./App.css";
 
 function App() {
+  const pages = localStorage.getItem(EPageTypes.PAGES);
+  const pricePlans = localStorage.getItem(EPageTypes.PRICE_PLANS);
+  const products = localStorage.getItem(EPageTypes.PRODUCTS);
+
+  useEffect(() => {
+    if (pages && pricePlans && products) {
+      return;
+    } else {
+      localStorage.setItem(EPageTypes.PAGES, JSON.stringify(pagesData));
+      localStorage.setItem(
+        EPageTypes.PRICE_PLANS,
+        JSON.stringify(pricePlansData)
+      );
+      localStorage.setItem(EPageTypes.PRODUCTS, JSON.stringify(productsData));
+    }
+  }, [pages, pricePlans, products]);
+
   return (
     <div className="App">
       <Routes>

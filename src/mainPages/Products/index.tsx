@@ -4,18 +4,23 @@ import searchIcon from "../../assets/search.png";
 import Table from "../../components/Table";
 import { pagesLinks } from "../../data";
 import * as SC from "./styles";
+import Modal from "../../components/Modal";
 
 const Products: FC = () => {
   const {
     tableData,
     inputValue,
-    editItem,
     selectValues,
     pageType,
     pathname,
+    filteredData,
+    setTableData,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
+    isModalOpen,
+    modalContent,
+    openModal,
+    closeModal,
   } = useProducts();
 
   return (
@@ -49,9 +54,24 @@ const Products: FC = () => {
           </SC.StyledSelect>
         </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
-      {/* TODO */}
-      {/* <Table pageType={pageType} data={tableData} setEditItem={setEditItem} /> */}
-      {editItem && <div>{editItem.id}</div>}
+      {filteredData?.length ? (
+        <Table
+          openModal={openModal}
+          pageType={pageType}
+          data={tableData}
+          filterdData={filteredData}
+        />
+      ) : (
+        <div>Nothing found</div>
+      )}
+      {isModalOpen && (
+        <Modal
+          pathname={pathname}
+          modalContent={modalContent}
+          onClose={closeModal}
+          setTableData={setTableData}
+        />
+      )}
     </SC.StyledProductsMainContainer>
   );
 };

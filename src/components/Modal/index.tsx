@@ -1,57 +1,102 @@
-import React, { ChangeEvent, FC, LegacyRef, MutableRefObject, ReactNode, RefObject, useCallback, useRef, useState } from "react";
-import { IPagesProps } from "../../types/globalTypes";
-import * as SC from './styles';
+import React, {
+  ChangeEvent,
+  FC,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import * as SC from "./styles";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import CloseIcon from "../../assets/icons/CloseIcon";
 import Button from "../Button";
-import { usePages } from "../../hooks/usePages";
+import { EInputValueType, IModal } from "./types";
+import { EPageTypes } from "../../types/globalTypes";
 
-const Modal: FC<{ isModalOpen: boolean; modalContent: any; onClose: () => void }> = ({ isModalOpen, modalContent, onClose }) => {
-    const modalRef = useRef<HTMLElement>(null);
-    const { tableData } = usePages()
-    const [inputValue, setInputValue] = useState(modalContent?.title || '')
+const Modal: FC<IModal> = ({
+  onClose,
+  modalContent,
+  setTableData,
+  pathname,
+}) => {
+  const modalRef = useRef<HTMLElement>(null);
+  const [inputValue, setInputValue] = useState(
+    modalContent.content?.title ||
+      modalContent.content?.description ||
+      modalContent.content?.name ||
+      ""
+  );
 
+  useOutsideClick([modalRef], onClose);
 
-    useOutsideClick([modalRef], onClose);
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  }, []);
 
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
-    }, [])
+  const inputValueType = useMemo(() => {
+    return modalContent.content.hasOwnProperty(EInputValueType.DESCRIPTION)
+      ? EInputValueType.DESCRIPTION
+      : modalContent.content.hasOwnProperty(EInputValueType.TITLE)
+      ? EInputValueType.TITLE
+      : EInputValueType.NAME;
+  }, [modalContent]);
 
-    // if (isModalOpen !== true) {
-    //     return null;
-    // }
-
-
-    // useOutsideClick([shareIconsRef], () => {
-    //     setIsShareIconsBlockVisible(false);
-    //   });
-    console.log('tableData', tableData)
-    const handleSave = () => {
-        const newObject = { ...modalContent, title: inputValue }
-        const findElementIndex = tableData.findIndex(item => item.id === modalContent?.id)
-        tableData[findElementIndex] = newObject
-        onClose()
-    }
-    return (
-        <SC.StyledModalSection>
-            <SC.StyledModalContent ref={modalRef}>
-                <h1>Edit</h1>
-                <SC.StyledExitIcon onClick={onClose}>
-                    <CloseIcon />
-                </SC.StyledExitIcon>
-                <SC.StyledMainContents>
-                    {/* <h5 className="modal-title">{modalContent?.title}</h5> */}
-                    <input type="text" defaultValue={modalContent?.title} onInput={handleChange} />
-                    <Button text="Save" onClick={handleSave} />
-                    {/* <div className="modal-button text-end"> */}
-                    {/* Save */}
-                    {/* <button>{modalContent.buttonText}</button> */}
-                    {/* </div> */}
-                </SC.StyledMainContents>
-            </SC.StyledModalContent>
-        </SC.StyledModalSection>
+  const handleSave = () => {
+    
+    const newTableData = [...modalContent.data];
+    const newObject = {
+      ...modalContent,
+      content: { ...modalContent.content, [inputValueType]: inputValue },
+    };
+    const findElementIndex = modalContent.data.findIndex(
+      (item: any) => item.id === modalContent?.content.id
     );
+    newTableData[findElementIndex] = newObject.content;
+
+    if (pathname.includes("/")) {
+      localStorage.setItem(EPageTypes.PRODUCTS, JSON.stringify(newTableData));
+    } else if (pathname.includes(EPageTypes.PRICE_PLANS)) {
+      localStorage.setItem(
+        EPageTypes.PRICE_PLANS,
+        JSON.stringify(newTableData)
+      );
+    } else if (pathname.includes(EPageTypes.PAGES)) {
+      localStorage.setItem(EPageTypes.PAGES, JSON.stringify(newTableData));
+    }
+
+    setTableData(newTableData);
+    onClose();
+  };
+
+  const defaultValue = useMemo(() => {
+    return (
+      modalContent.content?.title ||
+      modalContent.content?.description ||
+      modalContent.content?.name
+    );
+  }, [modalContent]);
+
+  return (
+    <SC.StyledModalSection>
+      <SC.StyledModalContent ref={modalRef}>
+        <h1>Edit</h1>
+        <SC.StyledExitIcon onClick={onClose}>
+          <CloseIcon />
+        </SC.StyledExitIcon>
+        <SC.StyledMainContents>
+          <label htmlFor="">
+            {inputValueType.charAt(0).toUpperCase() + inputValueType.slice(1)}
+          </label>
+          <input
+            type="text"
+            defaultValue={defaultValue}
+            onInput={handleChange}
+          />
+          <Button text="Save" onClick={handleSave} />
+        </SC.StyledMainContents>
+      </SC.StyledModalContent>
+    </SC.StyledModalSection>
+  );
 };
 
 export default Modal;

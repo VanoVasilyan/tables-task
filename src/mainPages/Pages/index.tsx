@@ -4,13 +4,12 @@ import Table from "../../components/Table";
 import { usePages } from "../../hooks/usePages";
 import * as SC from "./styles";
 import Modal from "../../components/Modal";
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Pages: FC = () => {
   const {
     tableData,
+    filteredData,
     inputValue,
-    editItem,
     selectValues,
     pageType,
     pagesLinks,
@@ -19,9 +18,9 @@ const Pages: FC = () => {
     closeModal,
     modalContent,
     isModalOpen,
+    setTableData,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
   } = usePages();
 
   return (
@@ -55,11 +54,24 @@ const Pages: FC = () => {
           </SC.StyledSelect>
         </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
-      {/* TODO */}
-      <Table openModal={openModal} pageType={pageType} data={tableData} setEditItem={setEditItem} />
-      {isModalOpen && <Modal isModalOpen={isModalOpen}
-        modalContent={modalContent}
-        onClose={closeModal} />}
+      {filteredData?.length ? (
+        <Table
+          openModal={openModal}
+          pageType={pageType}
+          data={tableData}
+          filterdData={filteredData}
+        />
+      ) : (
+        <div>Nothing found</div>
+      )}
+      {isModalOpen && (
+        <Modal
+          pathname={pathname}
+          modalContent={modalContent}
+          onClose={closeModal}
+          setTableData={setTableData}
+        />
+      )}
     </SC.StyledPagesMainContainer>
   );
 };

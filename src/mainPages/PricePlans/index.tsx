@@ -4,18 +4,23 @@ import { usePricePlans } from "../../hooks/usePricePlans";
 import * as SC from "./styles";
 import Table from "../../components/Table";
 import { pagesLinks } from "../../data";
+import Modal from "../../components/Modal";
 
 const PricePlans: FC = () => {
   const {
     tableData,
     inputValue,
-    editItem,
     selectValues,
     pageType,
     pathname,
+    filteredData,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
+    isModalOpen,
+    setTableData,
+    modalContent,
+    openModal,
+    closeModal,
   } = usePricePlans();
 
   return (
@@ -49,9 +54,24 @@ const PricePlans: FC = () => {
           </SC.StyledSelect>
         </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
-      {/* TODO */}
-      {/* <Table pageType={pageType} data={tableData} setEditItem={setEditItem} /> */}
-      {editItem && <div>{editItem.id}</div>}
+      {filteredData?.length ? (
+        <Table
+          openModal={openModal}
+          pageType={pageType}
+          data={tableData}
+          filterdData={filteredData}
+        />
+      ) : (
+        <div>Nothing found</div>
+      )}
+      {isModalOpen && (
+        <Modal
+          pathname={pathname}
+          modalContent={modalContent}
+          onClose={closeModal}
+          setTableData={setTableData}
+        />
+      )}
     </SC.StyledPricePlansMainContainer>
   );
 };
