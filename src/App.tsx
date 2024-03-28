@@ -5,7 +5,7 @@ import pricePlansData from './data/mocks/pricePlans.json';
 import productsData from './data/mocks/products.json';
 import { EPageTypes } from './types/globalTypes';
 import { routes } from './data';
-import './App.css';
+// import './App.css';
 
 function App() {
   const pages = localStorage.getItem(EPageTypes.PAGES);
@@ -23,7 +23,7 @@ function App() {
       );
       localStorage.setItem(EPageTypes.PRODUCTS, JSON.stringify(productsData));
     }
-  }, [pages, pricePlans, products]);
+  });
 
   return (
     <div className='App'>

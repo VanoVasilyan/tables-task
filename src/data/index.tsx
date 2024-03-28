@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import Products from '../mainPages/Products';
 import Pages from '../mainPages/Pages';
 import PricePlans from '../mainPages/PricePlans';
-import { IRoutes } from './types';
+import { IRoutes, ISelectValues, IPagesLinks } from './types';
 
 export const routes: IRoutes[] = [
   {
@@ -31,7 +31,7 @@ export const routes: IRoutes[] = [
   },
 ];
 
-export const selectValues = [
+export const selectValues: ISelectValues[] = [
   {
     id: 1,
     value: 'All',
@@ -46,7 +46,7 @@ export const selectValues = [
   },
 ];
 
-export const pagesLinks = [
+export const pagesLinks: IPagesLinks[] = [
   {
     id: 1,
     title: 'Products',

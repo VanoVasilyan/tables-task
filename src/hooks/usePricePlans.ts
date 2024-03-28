@@ -17,7 +17,6 @@ export const usePricePlans = () => {
     useState<IPricePlansProps[]>(pricePlansData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>('');
-  const [editItem, setEditItem] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<Record<string, any>>({});
 
@@ -61,7 +60,6 @@ export const usePricePlans = () => {
   return {
     tableData,
     inputValue,
-    editItem,
     selectValues,
     pagesLinks,
     pathname,
@@ -75,7 +73,6 @@ export const usePricePlans = () => {
     setModalContent,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
     pageType: EPageTypesForTable.PRICE_PLANS,
   };
 };

@@ -62,7 +62,7 @@ const Products: FC = () => {
           filterdData={filteredData}
         />
       ) : (
-        <div>Nothing found</div>
+        <SC.StyledNothingFound>Nothing found...((</SC.StyledNothingFound>
       )}
       {isModalOpen && (
         <Modal

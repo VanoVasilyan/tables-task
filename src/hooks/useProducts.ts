@@ -14,7 +14,6 @@ export const useProducts = () => {
   const [tableData, setTableData] = useState<IProductsProps[]>(productsData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>('');
-  const [editItem, setEditItem] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<Record<string, any>>({});
 
@@ -39,7 +38,6 @@ export const useProducts = () => {
   const handleSelectItems = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       setSelectedItem(e.target.value);
-
       if (inputValue) {
         setInputValue('');
       }
@@ -60,7 +58,6 @@ export const useProducts = () => {
     filteredData,
     tableData,
     inputValue,
-    editItem,
     selectValues,
     pagesLinks,
     pathname,
@@ -73,7 +70,6 @@ export const useProducts = () => {
     setModalContent,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
     pageType: EPageTypesForTable.PRODUCTS,
   };
 };
