@@ -3,6 +3,8 @@ import searchIcon from "../../assets/search.png";
 import Table from "../../components/Table";
 import { usePages } from "../../hooks/usePages";
 import * as SC from "./styles";
+import Modal from "../../components/Modal";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Pages: FC = () => {
   const {
@@ -13,6 +15,10 @@ const Pages: FC = () => {
     pageType,
     pagesLinks,
     pathname,
+    openModal,
+    closeModal,
+    modalContent,
+    isModalOpen,
     handleSearchItems,
     handleSelectItems,
     setEditItem,
@@ -50,8 +56,10 @@ const Pages: FC = () => {
         </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
       {/* TODO */}
-      <Table pageType={pageType} data={tableData} setEditItem={setEditItem} />
-      {editItem && <div>{editItem.id}</div>}
+      <Table openModal={openModal} pageType={pageType} data={tableData} setEditItem={setEditItem} />
+      {isModalOpen && <Modal isModalOpen={isModalOpen}
+        modalContent={modalContent}
+        onClose={closeModal} />}
     </SC.StyledPagesMainContainer>
   );
 };

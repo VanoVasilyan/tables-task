@@ -50,7 +50,7 @@ const PricePlans: FC = () => {
         </SC.StyledTableControllersInputsBlock>
       </SC.StyledTableControllersBlock>
       {/* TODO */}
-      <Table pageType={pageType} data={tableData} setEditItem={setEditItem} />
+      {/* <Table pageType={pageType} data={tableData} setEditItem={setEditItem} /> */}
       {editItem && <div>{editItem.id}</div>}
     </SC.StyledPricePlansMainContainer>
   );
