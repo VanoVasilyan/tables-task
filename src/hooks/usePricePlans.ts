@@ -1,13 +1,12 @@
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   EPageTypes,
   EPageTypesForTable,
   ESelectOptions,
   IPricePlansProps,
-} from "../types/globalTypes";
-import { pagesLinks } from "./../data/index";
-import { selectValues } from "../data";
+} from '../types/globalTypes';
+import { pagesLinks, selectValues } from './../data';
 
 export const usePricePlans = () => {
   const { pathname } = useLocation();
@@ -17,7 +16,7 @@ export const usePricePlans = () => {
   const [tableData, setTableData] =
     useState<IPricePlansProps[]>(pricePlansData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>('');
   const [editItem, setEditItem] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<Record<string, any>>({});
@@ -27,10 +26,10 @@ export const usePricePlans = () => {
       selectedItem === ESelectOptions.ALL
         ? tableData
         : selectedItem === ESelectOptions.ACTIVE
-        ? tableData.filter((item) => item.active && item)
-        : selectedItem === ESelectOptions.INACTIVE
-        ? tableData.filter((item) => !item.active && item)
-        : tableData
+          ? tableData.filter((item) => item.active && item)
+          : selectedItem === ESelectOptions.INACTIVE
+            ? tableData.filter((item) => !item.active && item)
+            : tableData
     )?.filter((item) =>
       item.description.toLowerCase().includes(inputValue.toLowerCase())
     );
@@ -44,7 +43,7 @@ export const usePricePlans = () => {
     (e: ChangeEvent<HTMLSelectElement>) => {
       setSelectedItem(e.target.value);
       if (inputValue) {
-        setInputValue("");
+        setInputValue('');
       }
     },
     [inputValue]

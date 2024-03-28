@@ -28,19 +28,19 @@ export interface IProductsProps {
 }
 
 export enum ESelectOptions {
-  ALL = "All",
-  ACTIVE = "Active",
-  INACTIVE = "Inactive",
+  ALL = 'All',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
 }
 
 export enum EPageTypesForTable {
-  PAGES = "Title",
-  PRICE_PLANS = "Description",
-  PRODUCTS = "Name",
+  PAGES = 'Title',
+  PRICE_PLANS = 'Description',
+  PRODUCTS = 'Name',
 }
 
 export enum EPageTypes {
-  PAGES = "pages",
-  PRODUCTS = "products",
-  PRICE_PLANS = "pricePlans",
+  PAGES = 'pages',
+  PRODUCTS = 'products',
+  PRICE_PLANS = 'pricePlans',
 }

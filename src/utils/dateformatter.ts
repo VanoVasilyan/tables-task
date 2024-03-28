@@ -5,17 +5,17 @@ export const dateFormatter = (
 ) => {
   const inputDate = new Date(date);
 
-  const day = inputDate.getDate().toString().padStart(2, "0");
-  const month = (inputDate.getMonth() + 1).toString().padStart(2, "0");
+  const day = inputDate.getDate().toString().padStart(2, '0');
+  const month = (inputDate.getMonth() + 1).toString().padStart(2, '0');
   const year = inputDate.getFullYear().toString();
 
   const hours = inputDate.getUTCHours();
   const minutes = inputDate.getUTCMinutes();
-  const amPM = hours >= 12 ? "PM" : "AM";
+  const amPM = hours >= 12 ? 'PM' : 'AM';
 
   if (dotted) {
     if (withTime) {
-      const formattedMinutes = String(minutes).padStart(2, "0");
+      const formattedMinutes = String(minutes).padStart(2, '0');
       return `${month}.${day}.${year} ${
         hours % 12 || 12
       }:${formattedMinutes} ${amPM}`;
@@ -24,7 +24,7 @@ export const dateFormatter = (
   }
 
   if (withTime) {
-    const formattedMinutes = String(minutes).padStart(2, "0");
+    const formattedMinutes = String(minutes).padStart(2, '0');
     return `${day}/${month}/${year}, ${
       hours % 12 || 12
     }:${formattedMinutes} ${amPM}`;

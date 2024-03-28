@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import searchIcon from "../../assets/search.png";
-import Table from "../../components/Table";
-import { usePages } from "../../hooks/usePages";
-import * as SC from "./styles";
-import Modal from "../../components/Modal";
+import React, { FC } from 'react';
+import Table from '../../components/Table';
+import Modal from '../../components/Modal';
+import { usePages } from '../../hooks/usePages';
+import searchIcon from '../../assets/icons/search.png';
+import * as SC from './styles';
 
 const Pages: FC = () => {
   const {
@@ -41,8 +41,8 @@ const Pages: FC = () => {
           <SC.StyledSearchInput
             value={inputValue}
             $bgImage={searchIcon}
-            placeholder="Search"
-            type="text"
+            placeholder='Search'
+            type='text'
             onChange={handleSearchItems}
           />
           <SC.StyledSelect onChange={handleSelectItems}>

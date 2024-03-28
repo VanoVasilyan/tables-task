@@ -6,7 +6,7 @@ export interface IModal {
 }
 
 export enum EInputValueType {
-  TITLE = "title",
-  DESCRIPTION = "description",
-  NAME = "name",
+  TITLE = 'title',
+  DESCRIPTION = 'description',
+  NAME = 'name',
 }

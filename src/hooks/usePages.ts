@@ -1,16 +1,14 @@
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { EPageTypes, EPageTypesForTable, IPagesProps } from "../types/globalTypes";
-import { ESelectOptions } from "../types/globalTypes";
-import { selectValues } from "../data";
-import { pagesLinks } from "./../data/index";
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { EPageTypes, EPageTypesForTable, IPagesProps, ESelectOptions } from '../types/globalTypes';
+import { selectValues, pagesLinks } from '../data';
 
 export const usePages = () => {
   const { pathname } = useLocation();
   const pagesData = JSON.parse(localStorage.getItem(EPageTypes.PAGES) as string);
   const [tableData, setTableData] = useState<IPagesProps[]>(pagesData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>('');
   const [editItem, setEditItem] = useState<IPagesProps>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<Record<string, any>>({});
@@ -20,10 +18,10 @@ export const usePages = () => {
       selectedItem === ESelectOptions.ALL
         ? tableData
         : selectedItem === ESelectOptions.ACTIVE
-        ? tableData.filter((item) => item.active && item)
-        : selectedItem === ESelectOptions.INACTIVE
-        ? tableData.filter((item) => !item.active && item)
-        : tableData
+          ? tableData.filter((item) => item.active && item)
+          : selectedItem === ESelectOptions.INACTIVE
+            ? tableData.filter((item) => !item.active && item)
+            : tableData
     )?.filter((item) =>
       item.title.toLowerCase().includes(inputValue.toLowerCase())
     );
@@ -37,7 +35,7 @@ export const usePages = () => {
     (e: ChangeEvent<HTMLSelectElement>) => {
       setSelectedItem(e.target.value);
       if (inputValue) {
-        setInputValue("");
+        setInputValue('');
       }
     },
     [inputValue]

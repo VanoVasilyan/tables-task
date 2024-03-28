@@ -5,13 +5,13 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from "react";
-import * as SC from "./styles";
-import useOutsideClick from "../../hooks/useOutsideClick";
-import CloseIcon from "../../assets/icons/CloseIcon";
-import Button from "../Button";
-import { EInputValueType, IModal } from "./types";
-import { EPageTypes } from "../../types/globalTypes";
+} from 'react';
+import Button from '../Button';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import CloseIcon from '../../assets/icons/CloseIcon';
+import { EPageTypes } from '../../types/globalTypes';
+import { EInputValueType, IModal } from './types';
+import * as SC from './styles';
 
 const Modal: FC<IModal> = ({
   onClose,
@@ -24,7 +24,7 @@ const Modal: FC<IModal> = ({
     modalContent.content?.title ||
       modalContent.content?.description ||
       modalContent.content?.name ||
-      ""
+      ''
   );
 
   useOutsideClick([modalRef], onClose);
@@ -53,7 +53,7 @@ const Modal: FC<IModal> = ({
     );
     newTableData[findElementIndex] = newObject.content;
 
-    if (pathname.includes("/")) {
+    if (pathname.includes('/')) {
       localStorage.setItem(EPageTypes.PRODUCTS, JSON.stringify(newTableData));
     } else if (pathname.includes(EPageTypes.PRICE_PLANS)) {
       localStorage.setItem(
@@ -84,15 +84,15 @@ const Modal: FC<IModal> = ({
           <CloseIcon />
         </SC.StyledExitIcon>
         <SC.StyledMainContents>
-          <label htmlFor="">
+          <label htmlFor=''>
             {inputValueType.charAt(0).toUpperCase() + inputValueType.slice(1)}
           </label>
           <input
-            type="text"
+            type='text'
             defaultValue={defaultValue}
             onInput={handleChange}
           />
-          <Button text="Save" onClick={handleSave} />
+          <Button text='Save' onClick={handleSave} />
         </SC.StyledMainContents>
       </SC.StyledModalContent>
     </SC.StyledModalSection>
