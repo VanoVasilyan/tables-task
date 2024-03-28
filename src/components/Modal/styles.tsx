@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledButtonWrapper } from '../Button/styles';
 
 export const StyledModalSection = styled.section`
     position: fixed;
@@ -22,55 +23,52 @@ export const StyledModalContent = styled.article`
     background-color: #fff;
     border-radius: 15px;
 `
+export const StyledModalHeader = styled.h1`
+    font-size: 25px;
+    margin: 0;
+`;
+
+export const StyledModalInputLabelWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`;
+
+export const StyledModalInputLabel = styled.span`
+    font-weight: 600;
+    color: #674f97;
+`;
+
+export const StyledModalInput = styled.input<{ $isInputEmpty?: boolean }>`
+    outline: none;
+    border: 1px solid ${({ $isInputEmpty }) => $isInputEmpty ? 'red' : '#a9a9a9ed'};
+    color: #524444;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.5s;
+
+    &:focus{
+       border: 1px solid ${({ $isInputEmpty }) => $isInputEmpty ? 'red' : '#6835cd'};
+    }
+`;
+
+export const StyledRequiredFieldText = styled.span`
+    color: red;
+    font-size: 14px;
+`
 
 export const StyledExitIcon = styled.div`
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 `
 
 export const StyledMainContents = styled.main`
-    
+    margin-top: 50px;
+    ${StyledButtonWrapper}{
+        text-align: center;
+        margin-top: 20px;
+    }
 `
-// .modal {
-//     position: fixed;
-//     left: 0;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     background-color: rgba(0, 0, 0, 0.5);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//    }
-//    .modal-content {
-//     border: 1px solid #fff;
-//     width: 500px;
-//     background-color: #fff;
-//     border-radius: 15px;
-//    }
-//    .exit-icon {
-//     cursor: pointer;
-//     font-size: 20px;
-//    }
-//    .modal-title {
-//     color: #6821c3;
-//     font-weight: 700;
-//     font-size: 30px;
-//     line-height: 28px;
-//    }
-//    .modal-image img {
-//     width: 8rem;
-//    }
-//    .modalText {
-//     text-align: justify;
-//    }
-//    .modal-button button {
-//     border: 1px solid #6821c3;
-//     padding: 6px;
-//     width: 8rem;
-//     background-color: #6821c3;
-//     color: white;
-//     border-radius: 7px;
-//    }

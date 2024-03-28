@@ -9,7 +9,6 @@ export const usePages = () => {
   const [tableData, setTableData] = useState<IPagesProps[]>(pagesData);
   const [selectedItem, setSelectedItem] = useState<string>(ESelectOptions.ALL);
   const [inputValue, setInputValue] = useState<string>('');
-  const [editItem, setEditItem] = useState<IPagesProps>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<Record<string, any>>({});
 
@@ -54,7 +53,6 @@ export const usePages = () => {
     isModalOpen,
     tableData,
     inputValue,
-    editItem,
     selectValues,
     pagesLinks,
     pathname,
@@ -65,7 +63,6 @@ export const usePages = () => {
     setTableData,
     handleSearchItems,
     handleSelectItems,
-    setEditItem,
     pageType: EPageTypesForTable.PAGES,
   };
 };

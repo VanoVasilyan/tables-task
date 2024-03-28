@@ -27,7 +27,12 @@ export const StyledTableColumns = styled.td<{
 }>`
   color: ${({ $isActive }) => {
     if ($isActive !== undefined) {
-      return $isActive ? '#94eb41' : '#ff1818';
+      return $isActive ? '#37E206' : '#DB1305';
+    }
+  }};
+  font-weight: ${({ $isActive }) => {
+    if ($isActive !== undefined) {
+      return 500;
     }
   }};
   background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : 'white')};
@@ -39,7 +44,7 @@ export const StyledTableRows = styled.tr``;
 export const StyledMainTableHead = styled.thead`
   ${StyledTableRows} {
     ${StyledTableColumns} {
-      color: #12179a;
+      color: #6835cd;
       font-weight: 700;
       font-size: 20px;
       padding: 10px 22px;

@@ -15,6 +15,10 @@ export const StyledTableControllersBlock = styled.div`
   align-items: center;
   gap: 15px;
   margin: 15px 0;
+
+  @media (max-width: 600px){
+    justify-content: center;
+  }
 `;
 
 export const StyledTableControllersInputsBlock = styled.div`
@@ -23,7 +27,8 @@ export const StyledTableControllersInputsBlock = styled.div`
 `;
 
 export const StyledSearchInput = styled.input<{ $bgImage?: string }>`
-  border: none;
+  border: 1px solid transparent;
+  transition: 0.5s;
   outline: none;
   color: gray;
   padding: 8px 8px 8px 16px;
@@ -38,6 +43,10 @@ export const StyledSearchInput = styled.input<{ $bgImage?: string }>`
     font-family: 'Montserrat', sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+  };
+
+  &:focus{
+    border: 1px solid #6835cd;
   }
 `;
 
@@ -55,9 +64,13 @@ export const StyledSelectOptions = styled.option``;
 export const StyledPathsContainer = styled.div`
   display: flex;
   gap: 10px;
+
+  @media (max-width: 600px){
+    flex-direction: column;
+  }
 `;
 
-export const StyledPagesLink = styled(Link)<{ $isActive?: boolean }>`
+export const StyledPagesLink = styled(Link) <{ $isActive?: boolean }>`
   text-decoration: none;
   &:focus {
     color: inherit;
@@ -65,7 +78,15 @@ export const StyledPagesLink = styled(Link)<{ $isActive?: boolean }>`
   ${({ $isActive }) =>
     $isActive &&
     css`
-      color: #12179a;
+      font-size: 20px;
+      color: #6835cd;
       font-weight: 700;
     `};
 `;
+
+export const StyledNothingFound = styled.div`
+  text-align: center;
+  margin-top: 20vh;
+  font-size: 40px;
+  color: red;
+`
