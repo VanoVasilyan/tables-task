@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import * as SC from "./styles";
-import { IButton } from "./types";
+import React, { FC } from 'react';
+import { IButton } from './types';
+import * as SC from './styles';
 
 const Button: FC<IButton> = ({ onClick, text }) => {
   return (

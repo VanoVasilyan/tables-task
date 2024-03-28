@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledTableMainContainer = styled.div``;
 
@@ -27,10 +27,10 @@ export const StyledTableColumns = styled.td<{
 }>`
   color: ${({ $isActive }) => {
     if ($isActive !== undefined) {
-      return $isActive ? "#94eb41" : "#ff1818";
+      return $isActive ? '#94eb41' : '#ff1818';
     }
   }};
-  background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : "white")};
+  background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : 'white')};
   padding: 10px 22px;
 `;
 

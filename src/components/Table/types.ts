@@ -6,6 +6,6 @@ export interface ITableProps {
 }
 
 export enum EElementStatus {
-  ACTIVE = "Active",
-  INACTIVE = "Inactive",
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
 }

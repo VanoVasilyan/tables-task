@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import * as SC from "./styles";
-import { EElementStatus, ITableProps } from "./types";
-import { dateFormatter } from "../../utils/dateformatter";
-import Button from "../Button";
+import React, { FC } from 'react';
+import Button from '../Button';
+import { dateFormatter } from '../../utils/dateformatter';
+import { EElementStatus, ITableProps } from './types';
+import * as SC from './styles';
 
 const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
   return (
@@ -11,17 +11,17 @@ const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
         <SC.StyledMainTable>
           <SC.StyledMainTableHead>
             <SC.StyledTableRows>
-              <SC.StyledTableColumns $bgColor={"#F5F8FC"}>
+              <SC.StyledTableColumns $bgColor={'#F5F8FC'}>
                 {pageType}
               </SC.StyledTableColumns>
-              <SC.StyledTableColumns $bgColor={"#F5F8FC"}>
+              <SC.StyledTableColumns $bgColor={'#F5F8FC'}>
                 Status
               </SC.StyledTableColumns>
-              <SC.StyledTableColumns $bgColor={"#F5F8FC"}>
+              <SC.StyledTableColumns $bgColor={'#F5F8FC'}>
                 Created
               </SC.StyledTableColumns>
               <SC.StyledTableColumns
-                $bgColor={"#F5F8FC"}
+                $bgColor={'#F5F8FC'}
               ></SC.StyledTableColumns>
             </SC.StyledTableRows>
           </SC.StyledMainTableHead>
@@ -30,12 +30,12 @@ const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
               return (
                 <SC.StyledTableRows key={element.id}>
                   <SC.StyledTableColumns
-                    $bgColor={index % 2 ? "#F5F8FC" : "white"}
+                    $bgColor={index % 2 ? '#F5F8FC' : 'white'}
                   >
                     {element.title || element.name || element.description}
                   </SC.StyledTableColumns>
                   <SC.StyledTableColumns
-                    $bgColor={index % 2 ? "#F5F8FC" : "white"}
+                    $bgColor={index % 2 ? '#F5F8FC' : 'white'}
                     $isActive={element.active}
                   >
                     {element.active
@@ -43,7 +43,7 @@ const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
                       : EElementStatus.INACTIVE}
                   </SC.StyledTableColumns>
                   <SC.StyledTableColumns
-                    $bgColor={index % 2 ? "#F5F8FC" : "white"}
+                    $bgColor={index % 2 ? '#F5F8FC' : 'white'}
                   >
                     {dateFormatter(
                       element.createdAt || element.publishedAt,
@@ -52,10 +52,10 @@ const Table: FC<ITableProps> = ({ data, filterdData, pageType, openModal }) => {
                     )}
                   </SC.StyledTableColumns>
                   <SC.StyledTableColumns
-                    $bgColor={index % 2 ? "#F5F8FC" : "white"}
+                    $bgColor={index % 2 ? '#F5F8FC' : 'white'}
                   >
                     <Button
-                      text="Edit"
+                      text='Edit'
                       onClick={() => openModal(element, data)}
                     />
                   </SC.StyledTableColumns>

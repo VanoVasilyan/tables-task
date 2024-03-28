@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import searchIcon from "../../assets/search.png";
-import { usePricePlans } from "../../hooks/usePricePlans";
-import * as SC from "./styles";
-import Table from "../../components/Table";
-import { pagesLinks } from "../../data";
-import Modal from "../../components/Modal";
+import React, { FC } from 'react';
+import Table from '../../components/Table';
+import Modal from '../../components/Modal';
+import { usePricePlans } from '../../hooks/usePricePlans';
+import searchIcon from '../../assets/icons/search.png';
+import { pagesLinks } from '../../data';
+import * as SC from './styles';
 
 const PricePlans: FC = () => {
   const {
@@ -41,8 +41,8 @@ const PricePlans: FC = () => {
           <SC.StyledSearchInput
             value={inputValue}
             $bgImage={searchIcon}
-            placeholder="Search"
-            type="text"
+            placeholder='Search'
+            type='text'
             onChange={handleSearchItems}
           />
           <SC.StyledSelect onChange={handleSelectItems}>

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 export const StyledPagesMainContainer = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ export const StyledSearchInput = styled.input<{ $bgImage?: string }>`
 
   &::placeholder {
     font-size: 15px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
   }
