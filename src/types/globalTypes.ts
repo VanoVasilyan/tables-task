@@ -38,3 +38,9 @@ export enum EPageTypesForTable {
   PRICE_PLANS = "Description",
   PRODUCTS = "Name",
 }
+
+export enum EPageTypes {
+  PAGES = "pages",
+  PRODUCTS = "products",
+  PRICE_PLANS = "pricePlans",
+}
